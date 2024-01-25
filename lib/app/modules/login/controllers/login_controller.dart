@@ -1,7 +1,7 @@
 import 'dart:developer';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:peminjam_perpustakaan_kelas_b/app/data/model/response_login.dart';
 import 'package:peminjam_perpustakaan_kelas_b/app/routes/app_pages.dart';
 import '../../../data/constant/endpoint.dart';
 import '../../../data/provider/api_provider.dart';
@@ -11,11 +11,8 @@ import 'package:dio/dio.dart' as dio;
 class LoginController extends GetxController {
   final loading = false.obs;
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  final TextEditingController namaController = TextEditingController();
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController telpController = TextEditingController();
-  final TextEditingController alamatController = TextEditingController();
 
 
   final count = 0.obs;
@@ -46,13 +43,12 @@ class LoginController extends GetxController {
         if (formkey.currentState!.validate()) {
           final response = await ApiProvider.instance().post(Endpoint.login,
               data: dio.FormData.fromMap({
-                "nama": namaController.text.toString(),
                 "username": usernameController.text.toString(),
                 "password": passwordController.text.toString(),
-                "telp": telpController.text.toString(),
-                "alamat": alamatController.text.toString(),
               }));
           if (response.statusCode == 200) {
+            ResponseLogin responseLogin=ResponseLogin.fromJson(response.data);
+            await StorageProvider.write(StorageKey.idUser, responseLogin.data!.id!.toString());
             await StorageProvider.write(StorageKey.status, "Logged");
             Get.offAllNamed(Routes.HOME);
           } else {

@@ -17,25 +17,91 @@ class LoginView extends GetView<LoginController> {
           key: controller.formkey,
           child: Column(
             children: [
-              TextFormField(
-                controller: controller.usernameController,
-                decoration: InputDecoration(hintText: "Masukan Username"),
-                validator: (value) {
-                  if (value!.length < 5) {
-                    return "username tidak boleh kosong";
-                  }
-                  return null;
-                },
+          Container(
+          child: Column(
+          children: [
+
+            Container(
+            child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                child: Text(
+                  'Username',
+                  style: TextStyle(
+                    fontSize: 14.0,
+                    color: Color(0xFF61677D),
+                    letterSpacing: -0.2,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
-              TextFormField(
-                controller: controller.passwordController,
-                decoration: InputDecoration(hintText: "Masukan Password"),
-                validator: (value) {
-                  if (value!.length < 5) {
-                    return "password tidak boleh kosong";
-                  }
-                  return null;
-                },
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: TextFormField(
+                  controller: controller.usernameController,
+                  decoration: InputDecoration(
+                    hintText: 'Masukan Username',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  validator: (value){
+                    if (value!.isEmpty){
+                      return 'Username tidak boleh kosong!';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+        Container(
+          child: Column(
+            children: [
+
+              Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                      child: Text(
+                        'Password',
+                        style: TextStyle(
+                          fontSize: 14.0,
+                          color: Color(0xFF61677D),
+                          letterSpacing: -0.2,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      child: TextFormField(
+                        controller: controller.passwordController,
+                        decoration: InputDecoration(
+                          hintText: 'Masukan Password',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        validator: (value){
+                          if (value!.isEmpty){
+                            return 'Password tidak boleh kosong!';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
               Obx(() => controller.loading.value
                   ? const CircularProgressIndicator()
@@ -50,7 +116,13 @@ class LoginView extends GetView<LoginController> {
             ],
           ),
         ),
+        ]
       ),
+     ),
+    ]
+    ),
+    ),
+    ),
     );
   }
 }

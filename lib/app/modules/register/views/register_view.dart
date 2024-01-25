@@ -92,7 +92,6 @@ class RegisterView extends GetView<RegisterController> {
                                   },
                                 ),
                               ),
-
                             ],
                           ),
                         ),
@@ -137,7 +136,6 @@ class RegisterView extends GetView<RegisterController> {
                                   },
                                 ),
                               ),
-
                             ],
                           ),
                         ),
@@ -182,7 +180,6 @@ class RegisterView extends GetView<RegisterController> {
                                   },
                                 ),
                               ),
-
                             ],
                           ),
                         ),
@@ -227,7 +224,6 @@ class RegisterView extends GetView<RegisterController> {
                                   },
                                 ),
                               ),
-
                             ],
                           ),
                         ),
@@ -275,7 +271,6 @@ class RegisterView extends GetView<RegisterController> {
                             ],
                           ),
                         )
-
                       ],
                     ),
                   ),
@@ -315,10 +310,6 @@ class RegisterView extends GetView<RegisterController> {
                       ],
                     ),
                   ),
-
-
-
-
                 ]
             ),
           )
